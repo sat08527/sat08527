@@ -1,0 +1,45 @@
+class PnpFilter{
+private String role;
+private String auths;
+private String mbrId;
+
+private PnpFilter(Builder builder){
+    this.role=builder.role;
+    this.auths=builder.auths;
+    this.mbrId=builder.mbrId;
+}
+
+public static class Builder{
+    private String role;
+    private String auths;
+    private String mbrId;
+
+public Builder(String mbrId){
+    this.mbrId=mbrId;
+}
+    
+public Builder setRole(String role){
+        this.role=role;
+        return this;
+}
+
+public Builder setAuths(String auths){
+        this.auths=auths;
+        return this;
+}
+
+public PnpFilter build(){
+    return new PnpFilter(this);
+}
+
+}
+
+}
+
+////////////////////////////////////////
+public static void main(String args[]){
+
+PnpFilter filter=PnpFilter.builder
+
+
+}
