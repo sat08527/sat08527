@@ -39,7 +39,8 @@ public PnpFilter build(){
 ////////////////////////////////////////
 public static void main(String args[]){
 
-PnpFilter filter=PnpFilter.builder
+PnpFilter filter=new PnpFilter.Builder("MBR123")
+.setRole("CA_ACCESS").build();
 
 
 }
