@@ -1,0 +1,63 @@
+//Employee(int id,String name, int age, String gender,String department,
+//int yearOfJoining,Double salary);
+
+
+public void employeeQueries(List<Employees> emps){
+
+//How manu male and female employees are there in the organisation
+Map<String, Long> genderCount=emps.stream().collect(Collectors.groupingBy(Employee::getGender,Collectors.counting()));
+
+//Print the name of all the department in the organisation
+emps.stream().map(Employee::getDepartment).distinct().forEach(System.out::print);
+
+//Average age of male and female employees
+Map<String,Double> avgGenderAge=emps.stream().collect(Collectors.groupingBy(Employee:getGender,Collectors.averagingDouble(Employee::getAge)));
+
+//Get the details of higest paid employee in the organisation
+Optional<Employee> e=emps.stream().collect(Collectors.maxBy((e1,e2)->{
+    if(e1.getSalary()>e2.getSalary())
+        return 1;
+    else if(e1.getSalary()<e2.getSalary())
+        return -1;
+    else 
+    return 0;
+
+
+}));
+
+System.out.println("Employee with MAX Salary"+e.get());
+
+//Get the names of all employees who joined after 2015
+emps.stream().filter(e->e.getYearOfJoining()>2015).map(Employee::getName).forEach(System.out::print);
+
+//Count the number of employees in each department
+Map<String,Long> empsByDepartment=emps.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
+
+//Average salary of all department
+Map<String,double> avgSalDept=emps.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.averagingDouble(Employee::getSalary)));
+
+//Get the details of youngest male employee in the product development  department
+emps.stream().filter(e->e.getDepartment().equals("Product Development") && e.getGender().equals("Male"))
+.collect(Collectors.min((e1,e2))->{
+    if(e1.getAge()>e2.getAge()) return 1;
+    else if(e1.getAge()<e2.getAge()) return -1;
+    else return 0;
+}).
+
+//List the names of all the employees in each department
+Map<String,List<String>> empsByDept=emps.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+        Collectors.mapping(Employee::getName(),Collectors.toList()));
+
+empsByDept.entrySet().forEach(set->{
+    System.out.print(set.getKey()+":"+set.getValue())
+    )
+
+})
+
+//get the total salary and average salary of whle organisation
+DoubleSummaryStatistics st=emps.stream().collect(Collectors.summarizingDouble(Employee:getSalary));
+
+
+
+
+}

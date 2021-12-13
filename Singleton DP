@@ -1,0 +1,126 @@
+Singleton Design Pattern
+//Method 1 -Eager Approach
+
+public class Singleton{
+
+    public static Singleton sc=new Singleton();
+
+    private Singleton(){
+
+    }
+
+    public static Singleton getInstance(){
+        return sc;
+    }
+}
+
+//Method 2- create on first call -but will not work in multithreded environment
+
+public class Singleton{
+
+    public  static Singleton sc=null;
+
+    private Singleton(){
+
+    }
+
+    public static Singleton getInstance(){
+        if(sc==null)
+        sc=new Singleton();
+        return sc;
+    }
+}
+
+--we will synchronize it
+public class Singleton{
+
+    public  static Singleton sc=null;
+
+    private Singleton(){
+
+    }
+
+    public static synchronized Singleton getInstance(){
+        if(sc==null)
+        sc=new Singleton();
+        return sc;
+    }
+}
+
+---to improve the performance we use double checking mecanism
+public class Singleton{
+
+    public  static Singleton sc=null;
+
+    private Singleton(){
+
+    }
+
+    public static Singleton getInstance(){
+        if(sc==null){
+            synchronized(Singleton.class){
+                if(sc==null)
+                    sc=new Singleton();
+            }
+        }
+        return sc;
+    }
+}
+
+------But still there are options to break this
+1.reflection
+2.serializable
+3.cloneable
+4.if class is loaded by multiple class loaders
+
+public class Singleton implements Serializable{
+    private static final long serialVersionUID=-1010282028292892892;
+    private static Singleton sc=new Singleton();
+
+    private Singleton(){
+        if(sc!=null){
+            throw new IllegalStateException("Already created");
+        }
+    }
+public static Singleton getInstance(){
+    return sc;
+}
+
+
+private Object readResolve() throws ObjectStreamException{
+    return sc;
+}
+
+private Object writeReplace() throws ObjectStreamException{
+    return sc;
+}
+
+public Object clone() throws CloneNotSupportedException{
+    throw new CloneNotSupportedException("Singleton, can not be cloned");
+}
+
+private static Class getClass(String className) throws ClassNotFoundException{
+    ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
+    if(classLoader==null){
+        classLoader=Singleton.class.getClassLoader();
+    
+    return (classLoader.loadClass(className));
+    }
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+https://dzone.com/articles/design-patterns-for-beginners-with-java-examples
+
+1.Singleton Pattern
+2.Builder Pattern
+3.Observer Pattern
+4.Facade Pattern
+5.Adapter Pattern
+6.FlyWeight Patter
+
+//Adapter pattern
+JAXBContext context=JAXBContext.newInstance(dataclass);
+Marshaller marshaller=x=context.createMarshaller();
+marshaller.marshal(object)

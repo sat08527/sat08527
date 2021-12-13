@@ -1,0 +1,30 @@
+//Confluence page examples
+
+class Watcher{
+private String name;
+
+public Watcher(String name){
+    this.watcher=watcher;
+}
+
+public void notify()
+    System.out.println("Hey,"+name+" Confluence has been updated")
+
+}
+
+Class ConfluenceNotifier {
+List<Watcher> watchers=new ArrayList<>();
+
+public void register(Watcher watcher){
+    watchers.add(watcher);
+}
+
+public void onUpdate(){
+    watchers.forEach(w->{
+        w.nonotify();
+    })
+}
+
+
+
+}
