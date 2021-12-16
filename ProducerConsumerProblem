@@ -1,0 +1,47 @@
+//Thread t1=new Thread(()->p.printAlphabet());
+//Thread t2=new Thread(()->p.printNumbers());
+
+class PC{
+
+LinkedList<Integers> q=new LinkedList();
+int capacity=2;
+
+public void produce() throws InterruptedException{
+int val=0;
+while(true){
+    synchroized(this){
+        while(q.size()==capacity)
+            wait();
+        
+        System.out.println("Producer Produced:"+value);
+
+        q.add(value++);
+        notify();
+    }
+
+public void consumer() throws InterruptedException{
+while(true){
+    synchroized(this){
+        while(q.size()==0)
+            wait();
+        
+        System.out.println("Consumer consumed:"q.removeFirst());
+        notify();
+    }
+
+}
+
+main(){
+    PC p=new PC();
+    Thread t1=new Thread(()->p.produce());
+    Thread t2=new Thread(()->p.consume());
+
+    t1.start();
+    t2.start();
+}
+
+
+}
+
+}
+
