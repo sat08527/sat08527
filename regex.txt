@@ -143,4 +143,45 @@ public class ThymeleafVariableExtractor {
         return variables;
     }
 }
+//////////////
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.TemplateProcessingParameters;
+import org.thymeleaf.exceptions.TemplateInputException;
+import org.thymeleaf.exceptions.TemplateProcessingException;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
+import org.thymeleaf.templateresource.StringTemplateResource;
+
+public class ThymeleafTemplateValidator {
+
+    public static void main(String[] args) {
+        String template = "<html><body><h1 th:text=\"${title}\"></h1></body></html>";
+        boolean isValid = validateTemplate(template);
+        System.out.println("Template is valid: " + isValid);
+    }
+
+    public static boolean validateTemplate(String template) {
+        // Create a template resolver
+        StringTemplateResolver templateResolver = new StringTemplateResolver();
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+
+        // Create a template engine
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        // Validate the template
+        try {
+            StringTemplateResource templateResource = new StringTemplateResource(template);
+            TemplateProcessingParameters templateProcessingParams = new TemplateProcessingParameters(
+                    templateResource, templateEngine.getConfiguration());
+            templateEngine.getTemplateManager().parseTemplate(templateProcessingParams);
+        } catch (TemplateInputException | TemplateProcessingException e) {
+            // Template is not valid
+            return false;
+        }
+
+        // Template is valid
+        return true;
+    }
+}
 
