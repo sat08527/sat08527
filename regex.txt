@@ -1,0 +1,146 @@
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.Resource;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.AbstractTemplateViewResolver;
+import org.springframework.web.servlet.view.AbstractUrlBasedView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ThymeleafVariableExtractor {
+
+    public static void main(String[] args) throws IOException {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ViewResolver viewResolver = applicationContext.getBean(ViewResolver.class);
+
+        String templateName = "example-template"; // Replace with the actual template name
+        Set<String> variables = extractVariablesFromTemplate(viewResolver, templateName);
+        System.out.println("Variables: " + variables);
+    }
+
+    public static Set<String> extractVariablesFromTemplate(ViewResolver viewResolver, String templateName)
+            throws IOException {
+        Set<String> variables = new HashSet<>();
+
+        if (viewResolver instanceof AbstractTemplateViewResolver) {
+            AbstractTemplateViewResolver templateViewResolver = (AbstractTemplateViewResolver) viewResolver;
+            Resource templateResource = templateViewResolver.getApplicationContext()
+                    .getResource(templateViewResolver.getPrefix() + templateName + templateViewResolver.getSuffix());
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(templateResource.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    Set<String> expressionVariables = extractVariablesFromLine(line);
+                    variables.addAll(expressionVariables);
+                }
+            }
+        }
+
+        return variables;
+    }
+
+    private static Set<String> extractVariablesFromLine(String line) {
+        Set<String> variables = new HashSet<>();
+
+        Pattern pattern = Pattern.compile("\\$\\{([^}]*)\\}");
+        Matcher matcher = pattern.matcher(line);
+        while (matcher.find()) {
+            variables.add(matcher.group(1));
+        }
+
+        pattern = Pattern.compile("#\\{([^}]*)\\}");
+        matcher = pattern.matcher(line);
+        while (matcher.find()) {
+            variables.add(matcher.group(1));
+        }
+
+        return variables;
+    }
+}
+
+
+private static Set<String> extractVariablesFromLine(String line) {
+    Set<String> variables = new HashSet<>();
+
+    Pattern pattern = Pattern.compile("\\$\\{([^}]*)\\}");
+    Matcher matcher = pattern.matcher(line);
+    while (matcher.find()) {
+        variables.add(matcher.group(1));
+    }
+
+    pattern = Pattern.compile("#\\{([^}]*)\\}");
+    matcher = pattern.matcher(line);
+    while (matcher.find()) {
+        variables.add(matcher.group(1));
+    }
+
+    pattern = Pattern.compile("\\*\\{([^}]*)\\}");
+    matcher = pattern.matcher(line);
+    while (matcher.find()) {
+        variables.add(matcher.group(1));
+    }
+
+    pattern = Pattern.compile("@\\{([^}]*)\\}");
+    matcher = pattern.matcher(line);
+    while (matcher.find()) {
+        variables.add(matcher.group(1));
+    }
+
+    pattern = Pattern.compile("~\\{([^}]*)\\}");
+    matcher = pattern.matcher(line);
+    while (matcher.find()) {
+        variables.add(matcher.group(1));
+    }
+
+    // Add additional patterns for other types of expressions if needed
+
+    return variables;
+}
+
+
+///////////
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
+import org.thymeleaf.util.StringUtils;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class ThymeleafVariableExtractor {
+
+    public static void main(String[] args) {
+        String template = "<html><body><h1 th:text=\"${title}\"></h1></body></html>";
+        Set<String> variables = extractVariablesFromTemplate(template);
+        System.out.println("Variables: " + variables);
+    }
+
+    public static Set<String> extractVariablesFromTemplate(String template) {
+        // Create a template resolver
+        StringTemplateResolver templateResolver = new StringTemplateResolver();
+        templateResolver.setTemplateMode("HTML");
+
+        // Create a template engine
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        // Create a template parser
+        Set<String> variables = new HashSet<>();
+
+        // Parse the template
+        templateEngine.process(template, new Context(), (fragment) -> {
+            if (!StringUtils.isEmptyOrWhitespace(fragment.getExpressionString())) {
+                variables.add(fragment.getExpressionString());
+            }
+        });
+
+        return variables;
+    }
+}
+
