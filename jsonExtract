@@ -3,7 +3,7 @@ import json
 
 def extract_json_from_text(text):
     # Use regular expression to find JSON-like structures
-    json_like_patterns = re.findall(r'\{(?:[^{}]|(?R))*\}', text)
+    json_like_patterns = re.findall(r'\{(?:[^{}]|(?:\{(?:[^{}]|(?:\{(?:[^{}]|[^{}])*\}))*\}))*\}', text)
 
     # Parse and extract valid JSON from the matched patterns
     extracted_json = []
