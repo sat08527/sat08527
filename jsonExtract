@@ -1,0 +1,22 @@
+import re
+import json
+
+def extract_json_from_text(text):
+    # Use regular expression to find JSON-like structures
+    json_like_patterns = re.findall(r'\{(?:[^{}]|(?R))*\}', text)
+
+    # Parse and extract valid JSON from the matched patterns
+    extracted_json = []
+    for pattern in json_like_patterns:
+        try:
+            json_obj = json.loads(pattern)
+            extracted_json.append(json_obj)
+        except json.JSONDecodeError:
+            pass
+
+    return extracted_json
+
+# Example usage:
+text_with_json = "Some text before {\"name\": \"John\", \"age\": 30} and some text after {\"city\": \"New York\"}"
+extracted_data = extract_json_from_text(text_with_json)
+print("Extracted JSON:", extracted_data)
