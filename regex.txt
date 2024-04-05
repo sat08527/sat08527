@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>JSON Template</title>
-</head>
-<body>
-    <h1>Annual Validation</h1>
-    <p>Duin One: <span th:text="${json.annualValidation.duinOne}"></span></p>
-    <p>Duein Two: <span th:text="${json.annualValidation.dueinTwo}"></span></p>
-    
-    <h1>Change Management</h1>
-    <p>Duin One: <span th:text="${json.changeManagement.duinOne}"></span></p>
-    <p>Duein Two: <span th:text="${json.changeManagement.dueinTwo}"></span></p>
-</body>
-</html>
+#!/bin/bash
+
+# Set parameters
+PROXY="http://proxy.example.com:8080"  # Proxy server address and port
+USER_AGENT="MyCustomUserAgent"          # Custom User-Agent string
+URL="https://example.sharepoint.com"    # URL of the SharePoint website
+
+# Construct curl command
+CURL_COMMAND="curl --tlsv1.2"
+
+if [ ! -z "$PROXY" ]; then
+    CURL_COMMAND="$CURL_COMMAND --proxy $PROXY"
+fi
+
+if [ ! -z "$USER_AGENT" ]; then
+    CURL_COMMAND="$CURL_COMMAND -H \"User-Agent: $USER_AGENT\""
+fi
+
+CURL_COMMAND="$CURL_COMMAND $URL"
+
+# Print the constructed curl command
+echo "Executing curl command:"
+echo "$CURL_COMMAND"
+echo
+
+# Execute the curl command
+eval "$CURL_COMMAND"
