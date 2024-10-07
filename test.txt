@@ -1,21 +1,52 @@
-Here are six concise performance and impact points for Shubham:
-
-1. consistently delivers high-quality, reusable code, showcasing his strong technical skills and focus on maintainability.
+Here’s a summary of your feedback highlighting both your technical improvements and leadership efforts:
 
 
-2. He has a collaborative approach in discussions with the API team, ensuring productive exchanges that lead to common agreements.
+---
+
+Technical Improvements:
+
+1. Control Sheet Map Project: Built and maintained the project with incremental control additions. Successfully mentored Ravi and Victoria, making them self-sufficient, allowing you to step back to a supervisory role.
 
 
-3. His proactive mindset encourages exploring new architectural solutions, always striving to improve the project's design and implementation.
+2. Resilience Dashboard: Developed the dashboard within a tight timeframe, ensuring a bug-free solution while collaborating with US-based teams.
 
 
-4. fosters a two-way dialogue within the team, creating a balanced, open environment for feedback and innovation.
+3. Oasis Project: Led the development of this configurable and complex project, positioning it as a key solution for the MSMAP team.
 
 
-5. His customer-first thinking ensures that the UI is built with the client’s needs in mind, leading to more user-centric designs.
+4. Fusion Reporting Tool: Quickly delivered multiple POCs to evaluate options for tracking user logs. After testing Adobe Analytics and iTrack, you developed an in-house solution and mentored Ravi to lead the implementation.
 
 
-6.  creativity and problem-solving skills drive the success of complex projects, always aiming for the best outcomes.
+5. Notification Engine Migration: Managed the migration from microservices to a monolithic notification engine, collaborating with Ravi and Amit to handle this transition.
 
 
+6. SharePoint POC: Conducted an analysis and provided a solution for urgent report uploads, aligning with your manager's requirements.
+
+
+7. Generative AI Initiative: Actively contributed to this project, learning Python and applying new skills in AI-related tasks.
+
+
+8. Quick Code Fixes: Provided essential fixes to the codebase when developers were unavailable, ensuring the timely resolution of urgent issues.
+
+
+
+Leadership and Mentorship:
+
+1. Mentoring and Empowering Team: Successfully mentored team members (Ravi, Victoria, and Amit) across various projects, helping them take ownership and lead tasks independently.
+
+
+2. Collaboration Across Time Zones: Effectively worked with Caleb and other team members across different time zones to deliver the Resilience Dashboard.
+
+
+3. Design and Architecture Leadership: Led the design and architecture efforts on multiple projects, providing guidance to the team in shaping solutions.
+
+
+4. Support on Ad-hoc Tasks: Assisted team members like Subham with ad-hoc tasks, providing timely input for POCs and helping the team meet their goals.
+
+
+
+
+---
+
+This feedback showcases your dual focus on technical development and leadership, demonstrating your ability to mentor team members, deliver high-quality technical solutions, and manage complex projects.
 
