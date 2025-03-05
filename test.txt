@@ -1,52 +1,267 @@
-Here’s a summary of your feedback highlighting both your technical improvements and leadership efforts:
+Scaling API - Design Document
+
+Author: [Your Name]
+Date: [Date]
+Version: 1.1
 
 
 ---
 
-Technical Improvements:
+1. Introduction
 
-1. Control Sheet Map Project: Built and maintained the project with incremental control additions. Successfully mentored Ravi and Victoria, making them self-sufficient, allowing you to step back to a supervisory role.
-
-
-2. Resilience Dashboard: Developed the dashboard within a tight timeframe, ensuring a bug-free solution while collaborating with US-based teams.
+This document outlines the challenges faced in scaling the API, the proposed solutions, and the design decisions taken to improve performance, maintainability, and functionality.
 
 
-3. Oasis Project: Led the development of this configurable and complex project, positioning it as a key solution for the MSMAP team.
+---
+
+2. Reported Issues & Solutions
+
+2.1 Inconsistent and Slow Search in Explorer
+
+Issue:
+
+Search functionality in Explorer is inconsistent across the project.
+
+Performance of search operations is slow.
 
 
-4. Fusion Reporting Tool: Quickly delivered multiple POCs to evaluate options for tracking user logs. After testing Adobe Analytics and iTrack, you developed an in-house solution and mentored Ravi to lead the implementation.
+Analysis:
+
+The current search implementation is based on prefix-based searches, which are inefficient for large datasets.
+
+Caching strategies have not been leveraged optimally.
 
 
-5. Notification Engine Migration: Managed the migration from microservices to a monolithic notification engine, collaborating with Ravi and Amit to handle this transition.
+Solution:
 
+1. Short-Term (Interim Solution):
 
-6. SharePoint POC: Conducted an analysis and provided a solution for urgent report uploads, aligning with your manager's requirements.
+Migrate all search operations to Lucene-based search to improve speed and consistency.
 
-
-7. Generative AI Initiative: Actively contributed to this project, learning Python and applying new skills in AI-related tasks.
-
-
-8. Quick Code Fixes: Provided essential fixes to the codebase when developers were unavailable, ensuring the timely resolution of urgent issues.
+Remove prefix-based searches.
 
 
 
-Leadership and Mentorship:
+2. Long-Term (Optimized Solution):
 
-1. Mentoring and Empowering Team: Successfully mentored team members (Ravi, Victoria, and Amit) across various projects, helping them take ownership and lead tasks independently.
+Collaborate with the FR team to evaluate the feasibility of Redis caching for improved performance.
 
-
-2. Collaboration Across Time Zones: Effectively worked with Caleb and other team members across different time zones to deliver the Resilience Dashboard.
-
-
-3. Design and Architecture Leadership: Led the design and architecture efforts on multiple projects, providing guidance to the team in shaping solutions.
+Implement Redis-based caching once feasibility is confirmed.
 
 
-4. Support on Ad-hoc Tasks: Assisted team members like Subham with ad-hoc tasks, providing timely input for POCs and helping the team meet their goals.
 
+
+Design Considerations:
+
+Lucene-based search provides indexing and full-text search capabilities.
+
+Redis caching can store frequently accessed search results, reducing database load.
 
 
 
 ---
 
-This feedback showcases your dual focus on technical development and leadership, demonstrating your ability to mentor team members, deliver high-quality technical solutions, and manage complex projects.
+2.2 High Turnaround Time for Development & Bug Fixes
 
+Issue:
+
+Slow development cycle for changes and bug fixes.
+
+The initial implementation was a Proof of Concept (POC) that unexpectedly moved to production.
+
+
+Analysis:
+
+The project has limited resources available for development.
+
+The design lacks core software engineering principles, increasing maintenance effort.
+
+
+Solution:
+
+1. Resource Optimization:
+
+Reallocate development efforts based on priority tasks.
+
+Evaluate the need for additional developers.
+
+
+
+2. Refactoring for Scalability:
+
+Implement SOLID principles to improve maintainability and extensibility.
+
+Apply design patterns such as:
+
+Strategy Pattern for modular and interchangeable implementations.
+
+Open/Closed Principle to allow extending functionality without modifying existing code.
+
+
+
+
+
+Design Considerations:
+
+Ensures the system is scalable and easy to modify in the future.
+
+Reduces technical debt and makes debugging easier.
+
+
+
+---
+
+2.3 Lack of Bidirectional Support Between Systems in Graph Database
+
+Issue:
+
+System A provides data to System B, but System B does not reflect this connection back to System A.
+
+The current implementation relies on SPARQL queries, which only provide one-directional data retrieval.
+
+
+Analysis:
+
+The project is already using a Stardog Graph Database, but the current SPARQL queries only return one-directional relationships.
+
+There is no mechanism to retrieve reverse links between nodes.
+
+
+Solution:
+
+1. SPARQL Query Enhancements:
+
+Modify existing queries to support bidirectional data retrieval from Stardog.
+
+Ensure relationships are properly indexed for faster retrieval.
+
+
+
+2. Graph Optimization:
+
+Evaluate whether using named graphs or additional predicates in Stardog can improve bidirectional navigation.
+
+
+
+
+Design Considerations:
+
+Ensures accurate representation of system interactions.
+
+Supports better visibility of dependencies.
+
+
+
+---
+
+2.4 Need for a Metadata Service for UI Configuration
+
+Issue:
+
+The UI lacks pre-defined knowledge about relationships between nodes.
+
+Relationships should be configurable rather than hardcoded.
+
+
+Analysis:
+
+Currently, UI depends on the API to determine node relationships dynamically.
+
+This makes it harder to configure and optimize UI interactions.
+
+
+Solution:
+
+1. Metadata Service:
+
+Introduce a Metadata API that provides static or configurable relationship data to the UI.
+
+This service will define how nodes (systems, persons, entities) are related before any query execution.
+
+
+
+2. Predefined Relationship Mapping:
+
+Store relationship metadata in a centralized location, making it configurable.
+
+Ensure UI can fetch this information easily and adjust its behavior accordingly.
+
+
+
+
+Design Considerations:
+
+Improves UI efficiency by reducing dynamic computations.
+
+Allows system relationships to be easily updated without modifying UI logic.
+
+
+
+---
+
+2.5 Need for Card-Based Metadata APIs for Nodes
+
+Issue:
+
+Clicking on a node (e.g., system, person) does not provide contextual metadata about that node.
+
+
+Analysis:
+
+Users expect to see basic information when interacting with nodes (e.g., clicking on a person should display their details).
+
+Currently, there is no structured API to serve this information.
+
+
+Solution:
+
+1. GraphQL-Based Metadata API:
+
+Implement a GraphQL API to fetch card-based metadata for each node type (systems, persons, etc.).
+
+Ensure flexible querying to fetch required details dynamically.
+
+
+
+2. Integration with UI:
+
+Work with the UI team to ensure proper integration of metadata APIs.
+
+
+
+
+Design Considerations:
+
+GraphQL provides flexibility in fetching metadata based on the UI's needs.
+
+Reduces over-fetching or under-fetching of data.
+
+Already discussed with UI team and manager, and the approach has been appreciated.
+
+
+
+---
+
+3. Next Steps & Implementation Plan
+
+
+---
+
+4. Conclusion
+
+This document outlines the reported issues in scaling the API and the structured solutions proposed:
+
+Lucene-based search to improve query performance.
+
+Redis caching for further optimization.
+
+Refactoring with SOLID principles and design patterns to improve maintainability.
+
+Bidirectional support in Graph Database via improved SPARQL queries.
+
+Metadata API for UI Configuration, allowing pre-defined relationships between nodes.
+
+GraphQL-based metadata API for contextual information on nodes.
+
+
+By implementing these solutions, we aim to enhance system performance, 
