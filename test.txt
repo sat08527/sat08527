@@ -1,71 +1,13 @@
-2.6 Duplicate APIs for Similar Use Cases (Sunburst & Discovery View)
+By implementing the proposed solutions, we aim to:
 
-Issue:
+Improve search performance using Lucene and Redis.
 
-Currently, APIs for Sunburst view and Discovery view duplicate the same type of data rendering.
+Reduce turnaround time through refactoring & design pattern adoption.
 
-This leads to redundant maintenance and inconsistent responses.
+Enhance bidirectional data retrieval in Graph Database.
 
+Provide better UI integration with a Metadata Service.
 
-Solution:
+Consolidate APIs to avoid duplication and ensure scalability.
 
-1. Unified API Approach:
-
-Implement a single API that provides connections between systems, regardless of whether the UI renders it in a Sunburst or Discovery view.
-
-Introduce a parameterized approach in the API to allow flexible rendering.
-
-
-
-2. Graph-Based Response Optimization:
-
-Ensure that the API efficiently fetches relationships using optimized SPARQL queries.
-
-
-
-
-Design Considerations:
-
-Reduces duplication and ensures consistency.
-
-Makes API maintenance easier.
-
-Improves query efficiency and response time.
-
-
-
----
-
-2.7 Slow SPARQL Queries for Sunburst & KBS Data Centers
-
-Issue:
-
-Some SPARQL queries in the Sunburst view and KBS data centers take 15-16 seconds, even after optimization, still taking 6 seconds in some cases.
-
-
-Solution:
-
-1. Preloading & Caching:
-
-Preload frequently accessed data centers and KBS-related queries at API startup.
-
-Store the results in memory or Redis cache to minimize query execution time.
-
-
-
-2. Optimized Query Execution:
-
-Identify static data and avoid unnecessary re-computation.
-
-Leverage query federation if applicable to fetch results faster.
-
-
-
-
-Design Considerations:
-
-Ensures real-time performance improvement.
-
-Reduces load on the database.
-
-Further optimizations can be done based on query access patterns.
+Optimize slow queries using preloading & caching strategies.
