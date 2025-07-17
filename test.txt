@@ -1,27 +1,16 @@
-Bachelor’s or Master’s degree in Computer Science, Computer Engineering, Data Analytics, or a related field.
+Good-to-Have Skills:
+Exposure to observability and monitoring tools such as Prometheus, Grafana, Loki, and Watchtower.
 
-10–15 years of hands-on experience in Java development with strong expertise in Core Java, Multithreading, and Object-Oriented Design.
+Experience or familiarity with Reactive Programming, especially using Spring WebFlux.
 
-Proficiency with Spring Framework, Spring Boot, and deep understanding of Spring Annotations and Java-based configurations.
+Hands-on knowledge of HTTP clients like OkHttp, WebClient, or similar.
 
-Experience with Java 15 or later (Java 17 preferred).
+Experience with or exposure to other graph databases or triple stores (e.g., Neo4j, Virtuoso, Blazegraph, RDF4J).
 
-Strong experience in designing and developing RESTful APIs; good working knowledge of GraphQL.
+Working knowledge of Redis for caching or data storage.
 
-Deep understanding of caching mechanisms, including Hazelcast, Caffeine, InCache, and Google Guava Cache.
+Familiarity with load balancer configurations and application performance tuning.
 
-Knowledge of Reactive Programming and experience working with Spring WebFlux.
+Understanding of Elasticsearch for search or analytics use cases.
 
-Familiarity with HTTP clients like OKHTTP.
-
-Experience integrating with Graph Databases (preferably Stardog); additional knowledge of Snowflake and Apache Jena is a strong plus.
-
-Familiarity with NIMS (if internal, specify or expand if needed).
-
-Understanding of application security, authentication, and authorization best practices.
-
-Experience with ZooKeeper for coordination and distributed systems management.
-
-Strong debugging and problem-solving skills, business acumen, and excellent communication skills.
-
-Experience with unit and integration testing in modern Java applications.
+Prior experience with Snowflake or Apache Jena is a bonus.
