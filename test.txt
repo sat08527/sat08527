@@ -1,9 +1,27 @@
-Design, develop, and maintain core components of a high-performance application built around knowledge graph architecture.
+Bachelor’s or Master’s degree in Computer Science, Computer Engineering, Data Analytics, or a related field.
 
-Implement and optimize scalable backend solutions integrating with Stardog graph database.
+10–15 years of hands-on experience in Java development with strong expertise in Core Java, Multithreading, and Object-Oriented Design.
 
-Develop and support APIs (both REST and GraphQL) to expose and manage application functionality efficiently.
+Proficiency with Spring Framework, Spring Boot, and deep understanding of Spring Annotations and Java-based configurations.
 
-Collaborate with cross-functional teams to ensure seamless data flow and performance through intelligent caching strategies.
+Experience with Java 15 or later (Java 17 preferred).
 
-Analyze, debug, and enhance existing components using modern Java practices, ensuring maintainability and reliability.
+Strong experience in designing and developing RESTful APIs; good working knowledge of GraphQL.
+
+Deep understanding of caching mechanisms, including Hazelcast, Caffeine, InCache, and Google Guava Cache.
+
+Knowledge of Reactive Programming and experience working with Spring WebFlux.
+
+Familiarity with HTTP clients like OKHTTP.
+
+Experience integrating with Graph Databases (preferably Stardog); additional knowledge of Snowflake and Apache Jena is a strong plus.
+
+Familiarity with NIMS (if internal, specify or expand if needed).
+
+Understanding of application security, authentication, and authorization best practices.
+
+Experience with ZooKeeper for coordination and distributed systems management.
+
+Strong debugging and problem-solving skills, business acumen, and excellent communication skills.
+
+Experience with unit and integration testing in modern Java applications.
