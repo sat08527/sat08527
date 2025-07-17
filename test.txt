@@ -1,13 +1,9 @@
-By implementing the proposed solutions, we aim to:
+Design, develop, and maintain core components of a high-performance application built around knowledge graph architecture.
 
-Improve search performance using Lucene and Redis.
+Implement and optimize scalable backend solutions integrating with Stardog graph database.
 
-Reduce turnaround time through refactoring & design pattern adoption.
+Develop and support APIs (both REST and GraphQL) to expose and manage application functionality efficiently.
 
-Enhance bidirectional data retrieval in Graph Database.
+Collaborate with cross-functional teams to ensure seamless data flow and performance through intelligent caching strategies.
 
-Provide better UI integration with a Metadata Service.
-
-Consolidate APIs to avoid duplication and ensure scalability.
-
-Optimize slow queries using preloading & caching strategies.
+Analyze, debug, and enhance existing components using modern Java practices, ensuring maintainability and reliability.
