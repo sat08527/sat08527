@@ -1,56 +1,12 @@
-#!/usr/bin/env python3
-import sys, re
-if len(sys.argv)<2:
-    print("Usage: parse_threads.py threaddump.txt"); sys.exit(1)
-txt = open(sys.argv[1]).read().splitlines()
+grep -n "ForkJoinPool.commonPool-worker-" -n threaddump.txt | cut -d: -f1 | \
+xargs -I{} sed -n "$(({}-2)),$(({}+4))p" threaddump.txt | \
+grep -E "ForkJoinPool.commonPool-worker-|java.lang.Thread.State"
 
-threads = []
-i = 0
-while i < len(txt):
-    m = re.match(r'^"([^"]*ForkJoinPool\.commonPool-worker-[^"]*)".*', txt[i])
-    if m:
-        name = m.group(1)
-        block = [txt[i]]
-        i += 1
-        # capture until blank line (thread separator)
-        while i < len(txt) and txt[i].strip() != "":
-            block.append(txt[i])
-            i += 1
-        threads.append((name, block))
-    else:
-        i += 1
 
-from collections import Counter, defaultdict
-state_count = Counter()
-hazelcast_threads = []
-blocked_holders = []
-for name, block in threads:
-    st = "UNKNOWN"
-    for line in block:
-        if "java.lang.Thread.State:" in line:
-            st = line.strip().split("java.lang.Thread.State:")[-1].strip()
-            break
-    state_count[st]+=1
-    s = "\n".join(block[:12])
-    if re.search(r'hazelcast|com\.hazelcast', s, re.I):
-        hazelcast_threads.append((name, st, block[:12]))
-    # detect locked monitors held
-    if any(re.search(r'- locked <0x', ln) for ln in block):
-        blocked_holders.append((name, st))
+awk '/ForkJoinPool.commonPool-worker-/{name=$0} /java.lang.Thread.State:/{print name " => " $0}' threaddump.txt | \
+sort | uniq -c
 
-print("Found", len(threads), "ForkJoin common pool worker threads")
-print("States:")
-for k,v in state_count.items():
-    print(f"  {k}: {v}")
-print()
-if hazelcast_threads:
-    print("Threads mentioning Hazelcast (sample):")
-    for t in hazelcast_threads[:10]:
-        print(" --- ", t[0], t[1])
-        print("\n".join(t[2]))
-        print()
-if blocked_holders:
-    print("Threads holding locks (sample):")
-    for t in blocked_holders[:10]:
-        print("  ", t)
-print("\nDone.")
+grep -n "ForkJoinPool.commonPool-worker-.*" -n threaddump.txt | cut -d: -f1 | \
+xargs -I{} sed -n "$(({}-1)),$(({}+40))p" threaddump.txt | grep -n "hazelcast" -n || true
+
+grep -n "Thread limit exceeded" -n threaddump.txt || true
