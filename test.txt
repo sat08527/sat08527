@@ -10,3 +10,14 @@ grep -n "ForkJoinPool.commonPool-worker-.*" -n threaddump.txt | cut -d: -f1 | \
 xargs -I{} sed -n "$(({}-1)),$(({}+40))p" threaddump.txt | grep -n "hazelcast" -n || true
 
 grep -n "Thread limit exceeded" -n threaddump.txt || true
+
+
+Found 380 ForkJoin common pool worker threads; all were in TIMED_WAITING (parking) state.
+
+We’re using parallel streams without a dedicated pool, so all work goes to the common ForkJoinPool.
+
+The ForkJoinPool’s core parallelism ≈ (CPU cores – 1) → typically 8–16 threads.
+
+When those workers block (e.g., Hazelcast I/O), the pool spawns compensation threads (max ~256).
+
+Once that limit is reached, any further tasks are rejected, causing the Thread limit exceeded replacing blocked worker thread error.
