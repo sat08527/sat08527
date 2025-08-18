@@ -83,3 +83,19 @@ Credits Tool modeling (in progress)
 GEN AI use cases exploration
 
 Impact – Demonstrated forward-looking thinking, keeping the team aligned with business and technology modernization goals.
+-------------------------------------------
+I was responsible for designing a solution that was not only rich in features (Sunburst, Explorer, and other interconnected components) but also highly configurable to support rapid future enhancements. By structuring the design to separate configuration from core logic, I ensured that new feature rollouts could be done quickly without compromising on quality or stability. This approach reduced risk in delivery timelines and allowed the product to evolve without repeated re-engineering.
+
+ the explicit requirement from leadership was “zero notion of code”. I translated this into a framework where both UI and API layers were built with minimal coding and maximum configurability. Today, the solution runs as a low-code platform within the firm, fully aligned with internal policies and compliance requirements, while still offering flexibility to business users. This balance of configurability with adherence to firm policies demonstrated my ability to combine control with agility.
+
+ I built a framework for handling reports within MS Map, where new reports generated daily could be plugged in seamlessly and made available for download and analysis. The modular, pluggable design minimized risks of system breakage when onboarding new data sets, while ensuring consistent user experience across reports. This reinforced both operational resilience and quality assurance across the reporting landscape.
+-----------------------------------------------------------------------
+Business Enablement & Optimization
+
+Notification Service Framework: Conceptualized and built a reusable notification service in collaboration with multiple cross-functional teams under the VP’s vision. Designed the framework to be department-wide, enabling different squads (including FCT) to seamlessly adopt it for consistent, reliable notifications — driving standardization, efficiency, and reusability across the firm.
+
+User Tracker Framework: Led the analysis of internal tools and Adobe Analytics to identify gaps in user tracking. Designed and delivered a flexible framework that provides multi-dimensional views of user behavior and engagement, now being adopted across teams. The solution not only improves transparency but also equips leaders with actionable insights to optimize adoption and user experience.
+
+Oasis: Played a key role in building a platform that empowers users to quickly identify key business services and their dependent infrastructure components — a process that previously took significant manual effort. The design has become a cornerstone in strengthening firm-wide resilience, allowing teams to make faster, data-driven decisions during high-impact scenarios.
+
+Explorer: Designed and optimized a system that gives users a consolidated view of service dependencies, managers, and stakeholders. This drastically reduces turnaround time in dependency mapping and empowers business teams with clarity, speed, and confidence, enhancing collaboration across verticals.
