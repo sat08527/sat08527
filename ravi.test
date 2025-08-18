@@ -99,3 +99,13 @@ User Tracker Framework: Led the analysis of internal tools and Adobe Analytics t
 Oasis: Played a key role in building a platform that empowers users to quickly identify key business services and their dependent infrastructure components — a process that previously took significant manual effort. The design has become a cornerstone in strengthening firm-wide resilience, allowing teams to make faster, data-driven decisions during high-impact scenarios.
 
 Explorer: Designed and optimized a system that gives users a consolidated view of service dependencies, managers, and stakeholders. This drastically reduces turnaround time in dependency mapping and empowers business teams with clarity, speed, and confidence, enhancing collaboration across verticals.
+
+=-----------
+Control System Mapping Initiative
+In this initiative, the explicit leadership requirement was a Zero Code Notion. Satyam translated this vision into a flexible framework where both UI and data logic are delivered with minimal coding and maximum configuration, effectively creating a low-code platform.
+
+To strengthen its effectiveness, the platform was further enhanced with an integrated notification service, enabling central users to instantly reach out to ITSOs or BSOs of respective systems whenever a control is breached, flagged, or mitigated. These notifications are powered by clearly defined, templated emails that not only standardize communication but also ensure consistency across stakeholders.
+
+More importantly, these messages are designed to provide actionable inputs — highlighting the specific control, the nature of the breach, and the immediate steps required. This ensures recipients don’t just receive information but can take swift corrective action.
+
+By combining a low-code configuration model with actionable, templated notifications, the solution significantly reduces control risks, drives faster response times, and enhances overall data quality across the firm.
