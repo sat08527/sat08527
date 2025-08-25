@@ -21,3 +21,8 @@ The ForkJoinPool’s core parallelism ≈ (CPU cores – 1) → typically 8–16
 When those workers block (e.g., Hazelcast I/O), the pool spawns compensation threads (max ~256).
 
 Once that limit is reached, any further tasks are rejected, causing the Thread limit exceeded replacing blocked worker thread error.
+
+
+Ever wondered how your business services, vendors, and data centers connect? Oasis brings clarity with an intuitive 360° sunburst view, revealing interdependencies across legal entities, systems, and regions. Built to support resilience, risk assessments, and faster incident response, Oasis aligns with FFIEC CAT controls and Fusion use cases. Visit us at Data Days 2025 and see how Oasis can transform your planning and operational insights!
+
+"Resilience starts with visibility. Oasis provides a holistic 360° view of your operational ecosystem—covering key business services, vendors, and data centers. Discover interconnections, assess risks, and plan effectively using our interactive sunburst visualization. Join us at Data Days 2025 and explore how Oasis helps you stay ahead in risk management and incident response!"
